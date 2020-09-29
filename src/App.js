@@ -4,10 +4,18 @@ import './App.css';
 
 
 function App() {
+
+  let openCard = false;
   
   function handleClick(e) {
     e.preventDefault();
     e.currentTarget.classList.toggle('is-flipped');
+    if(openCard) {
+      openCard = true;
+    } else {
+      
+    }
+
   }
 
   return (

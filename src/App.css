@@ -28,11 +28,11 @@ body { font-family: sans-serif; }
   backface-visibility: hidden;
 }
 
-.card__face--front {
+.card__face--back {
   background: red;
 }
 
-.card__face--back {
+.card__face--front {
   background: blue;
   transform: rotateY(180deg);
 }

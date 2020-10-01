@@ -6,29 +6,32 @@ import './App.css';
 function App() {
 
   let openCard = false;
+  let validClick = 0;
   
   function handleClick(e) {
     console.log(e);
     e.preventDefault();
-    e.currentTarget.classList.toggle('is-flipped');
 
 
+    validClick = validClick + 1;
 
-    if(!openCard) {
-      openCard = true;
-    } else {
-      var element = document.querySelectorAll('.card.is-flipped')
-      setTimeout(function() {
-        Array.prototype.forEach.call( element, function( node ) {
-          //node.parentNode.removeChild( node );
-          console.log(node.parentNode, element)
-          node.classList.remove('is-flipped')
-        });
-        openCard = false
-      }, 1000)
-
+    if(validClick < 3) {
+      e.currentTarget.classList.toggle('is-flipped');
+      if(!openCard) {
+        openCard = true;
+      } else {
+        var element = document.querySelectorAll('.card.is-flipped')
+        setTimeout(function() {
+          Array.prototype.forEach.call( element, function( node ) {
+            //node.parentNode.removeChild( node );
+            console.log(node.parentNode, element)
+            node.classList.remove('is-flipped')
+          });
+          openCard = false;
+          validClick = 0;
+        }, 1000)
+      }
     }
-
   }
 
   return (

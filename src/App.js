@@ -17,13 +17,10 @@ function App() {
       if(!openCard) {
         openCard = true;
       } else {
-        let element = document.querySelectorAll('.card.is-flipped:not(finded)');
+        let element = document.querySelectorAll('.card.is-flipped:not(.finded)');
         let nodeSelected = 0;
         setTimeout(function() {
           Array.prototype.forEach.call( element, function( node ) {
-            //node.parentNode.removeChild( node );
-            console.log(node.id, nodeSelected, node.parentNode)
-
             if(nodeSelected === 0) {
               nodeSelected = node
             } else {

@@ -6,7 +6,6 @@ function shuffleArray(array) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
   }
-
   return array
 }
 
@@ -14,21 +13,20 @@ function App() {
 
   let openCard = false;
   let validClick = 0;
-
-  //(Math.random() * 5.99).toFixed(0)
-  //a.splice(1,0, 222)
-  
+ 
   let positions = [
     {id: 1, title: "e"},
     {id: 1, title: "e"},
     {id: 2, title: "s"},
     {id: 2, title: "s"},
     {id: 3, title: "a"},
-    {id: 3, title: "a"}];
+    {id: 3, title: "a"},
+    {id: 4, title: "f"},
+    {id: 4, title: "f"},
+    {id: 5, title: "w"},
+    {id: 5, title: "w"}];
 
   positions = shuffleArray(positions);
-
-  console.log(positions);
 
   function handleClick(e) {
     e.preventDefault();
@@ -67,34 +65,12 @@ function App() {
     }
   }
 
-  return (
-  <div>
-    <div className="card"   onClick={handleClick} id='3'>
-      <div className="card__face card__face--front">front</div>
+  return (<div>{positions.map(position => (
+    <div className="card"   onClick={handleClick} id={position.id} key={position.id}>
+      <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back">back</div>
     </div>
-    <div className="card" onClick={handleClick} id='2'>
-      <div className="card__face card__face--front">front</div>
-      <div className="card__face card__face--back">back</div>
-    </div>
-    <div className="card" onClick={handleClick} id='2'>
-      <div className="card__face card__face--front">front</div>
-      <div className="card__face card__face--back">back</div>
-    </div>
-    <div className="card" onClick={handleClick} id='1'>
-      <div className="card__face card__face--front">front</div>
-      <div className="card__face card__face--back">back</div>
-    </div>
-    <div className="card" onClick={handleClick} id='3'>
-      <div className="card__face card__face--front">front</div>
-      <div className="card__face card__face--back">back</div>
-    </div>
-    <div className="card" onClick={handleClick} id='1'>
-      <div className="card__face card__face--front">front</div>
-      <div className="card__face card__face--back">back</div>
-    </div>
-  </div>
-  );
+  ))}</div>);
 }
 
 export default App;

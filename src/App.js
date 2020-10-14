@@ -3,9 +3,16 @@ import './App.css';
 
 function createPositions(number) {
   let positions = []
+  let chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', '1', '2', '@', '#', '&', '?', '!', '%'];
+  let numberSelectChars = (Math.random() * 15).toFixed(0);
 
-  for (var i = 1; i <= number; i++) {
-    positions.push({ id: i, type: i, title: "a" });
+  for (var i = 0; i < number; i++) {
+    let typeChar = i;
+    if(i%2 === 0) {
+      numberSelectChars = (Math.random() * 15).toFixed(0);
+      typeChar = i - 1;
+    }
+    positions.push({ id: i, type: typeChar, title: chars[numberSelectChars] });
   }
   
   console.log(positions)

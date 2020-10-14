@@ -1,6 +1,17 @@
 import React from 'react';
 import './App.css';
 
+function createPositions(number) {
+  let positions = []
+
+  for (var i = 1; i <= number; i++) {
+    positions.push({ id: i, type: i, title: "a" });
+  }
+  
+  console.log(positions)
+  return positions;
+}
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -13,18 +24,20 @@ function App() {
 
   let openCard = false;
   let validClick = 0;
+
+  createPositions(10)
  
   let positions = [
-    {id: 1, title: "e"},
-    {id: 1, title: "e"},
-    {id: 2, title: "s"},
-    {id: 2, title: "s"},
-    {id: 3, title: "a"},
-    {id: 3, title: "a"},
-    {id: 4, title: "f"},
-    {id: 4, title: "f"},
-    {id: 5, title: "w"},
-    {id: 5, title: "w"}];
+    {id: 1, type: 1, title: "e"},
+    {id: 2, type: 1, title: "e"},
+    {id: 3, type: 2, title: "s"},
+    {id: 4, type: 2, title: "s"},
+    {id: 5, type: 3, title: "a"},
+    {id: 6, type: 3, title: "a"},
+    {id: 7, type: 4, title: "f"},
+    {id: 8, type: 4, title: "f"},
+    {id: 9, type: 5, title: "w"},
+    {id: 10, type: 5, title: "w"}];
 
   positions = shuffleArray(positions);
 
@@ -44,7 +57,7 @@ function App() {
             if(nodeSelected === 0) {
               nodeSelected = node
             } else {
-              if(node.id !== nodeSelected.id) {
+              if(node.dataset.type !== nodeSelected.dataset.type) {
                 node.classList.remove('is-flipped')
                 nodeSelected.classList.remove('is-flipped')
                 console.log(node, nodeSelected)
@@ -66,7 +79,7 @@ function App() {
   }
 
   return (<div>{positions.map(position => (
-    <div className="card"   onClick={handleClick} id={position.id} key={position.id}>
+    <div className="card" onClick={handleClick} data-type={position.type} key={position.id}>
       <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back">back</div>
     </div>

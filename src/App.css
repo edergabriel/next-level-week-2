@@ -35,4 +35,5 @@ body { font-family: sans-serif; }
 .card__face--front {
   background: blue;
   transform: rotateY(180deg);
+  font-size: 80px;
 }

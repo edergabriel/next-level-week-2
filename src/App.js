@@ -3,20 +3,20 @@ import './App.css';
 
 function createPositions(number) {
   let positions = []
-  let chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', '1', '2', '@', '#', '&', '?', '!', '%'];
-  let numberSelectChars = (Math.random() * 15).toFixed(0);
+  let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
+  let numberSelectChars;
 
   for (var i = 0; i < number; i++) {
     let typeChar = i;
     if(i%2 === 0) {
-      numberSelectChars = (Math.random() * 15).toFixed(0);
+      numberSelectChars = (Math.random() * chars.length).toFixed(0);
     } else {
       typeChar = i - 1;
     }
     positions.push({ id: i, type: typeChar, title: chars[numberSelectChars] });
+    chars.splice(numberSelectChars, 1);
   }
-  
-  console.log(positions)
+  console.log("CreatePositions: ", positions)
   return positions;
 }
 
@@ -31,7 +31,7 @@ function shuffleArray(array) {
 function App() {
 
   let openCard = false;
-  let validClick = 0;
+  let validClick = 0; 
 
   createPositions(10)
  

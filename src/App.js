@@ -10,6 +10,7 @@ function createPositions(number) {
     let typeChar = i;
     if(i%2 === 0) {
       numberSelectChars = (Math.random() * 15).toFixed(0);
+    } else {
       typeChar = i - 1;
     }
     positions.push({ id: i, type: typeChar, title: chars[numberSelectChars] });

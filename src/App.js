@@ -8,13 +8,16 @@ function createPositions(number) {
 
   for (var i = 0; i < number; i++) {
     let typeChar = i;
+    let selectedChar;
     if(i%2 === 0) {
-      numberSelectChars = (Math.random() * chars.length).toFixed(0);
+      numberSelectChars = (Math.random() * chars.length-1).toFixed(0);
+      chars.splice(numberSelectChars, 1);
     } else {
       typeChar = i - 1;
     }
-    positions.push({ id: i, type: typeChar, title: chars[numberSelectChars] });
-    chars.splice(numberSelectChars, 1);
+    selectedChar = chars[numberSelectChars] 
+    console.log(selectedChar)
+    positions.push({ id: i, type: typeChar, title: selectedChar});
   }
   console.log("CreatePositions: ", positions)
   return positions;
@@ -33,20 +36,7 @@ function App() {
   let openCard = false;
   let validClick = 0; 
 
-  createPositions(10)
- 
-  let positions = [
-    {id: 1, type: 1, title: "e"},
-    {id: 2, type: 1, title: "e"},
-    {id: 3, type: 2, title: "s"},
-    {id: 4, type: 2, title: "s"},
-    {id: 5, type: 3, title: "a"},
-    {id: 6, type: 3, title: "a"},
-    {id: 7, type: 4, title: "f"},
-    {id: 8, type: 4, title: "f"},
-    {id: 9, type: 5, title: "w"},
-    {id: 10, type: 5, title: "w"}];
-
+  let positions = createPositions(10);
   positions = shuffleArray(positions);
 
   function handleClick(e) {
@@ -68,16 +58,12 @@ function App() {
               if(node.dataset.type !== nodeSelected.dataset.type) {
                 node.classList.remove('is-flipped')
                 nodeSelected.classList.remove('is-flipped')
-                console.log(node, nodeSelected)
               } else {
                 node.classList.add('finded')
                 nodeSelected.classList.add('finded')
               }
               nodeSelected = 0
             }
-
-  
-
           });
           openCard = false;
           validClick = 0;

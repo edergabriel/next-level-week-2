@@ -89,7 +89,7 @@ function App() {
   return (<div>{positions.map(position => (
     <div className="card" onClick={handleClick} data-type={position.type} key={position.id}>
       <div className="card__face card__face--front">{position.title}</div>
-      <div className="card__face card__face--back">back</div>
+      <div className="card__face card__face--back"><div></div></div>
     </div>
   ))}</div>);
 }

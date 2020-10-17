@@ -4,13 +4,15 @@ import './App.css';
 let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
 let removeChars = []
 let numberSelectChars;
+let numberTouches = 0;
 
 function checkValue(number) {
   removeChars.filter(function(element, index, array) {
     //console.log(index, removeChars[index], number)
     if(removeChars[index] === number) {
-      numberSelectChars = checkValue((Math.random() * chars.length).toFixed(0))
+      numberSelectChars = checkValue(Math.round(Math.random() * chars.length))
     } 
+    return numberSelectChars
   })
   return number
 }
@@ -23,7 +25,7 @@ function createPositions(number) {
     let typeChar = i;
     let selectedChar;
     if(i%2 === 0) {
-      numberSelectChars = (Math.random() * chars.length).toFixed(0);
+      numberSelectChars = Math.round(Math.random() * chars.length);
       checkValue(numberSelectChars)
       //console.log(numberSelectChars)
       //chars.splice(numberSelectChars, 1)
@@ -53,12 +55,13 @@ function App() {
   let openCard = false;
   let validClick = 0; 
 
-  let positions = createPositions(10);
+  let positions = createPositions(12);
   positions = shuffleArray(positions);
 
   function handleClick(e) {
     e.preventDefault();
     validClick = validClick + 1;
+    numberTouches = numberTouches + 1;
 
     if(validClick < 3) {
       e.currentTarget.classList.toggle('is-flipped');

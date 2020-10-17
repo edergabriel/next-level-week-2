@@ -1,25 +1,42 @@
 import React from 'react';
 import './App.css';
 
+let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
+let removeChars = []
+let numberSelectChars;
+
+function checkValue(number) {
+  removeChars.filter(function(element, index, array) {
+    //console.log(index, removeChars[index], number)
+    if(removeChars[index] === number) {
+      numberSelectChars = checkValue((Math.random() * chars.length).toFixed(0))
+    } 
+  })
+  return number
+}
+
 function createPositions(number) {
   let positions = []
-  let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
-  let numberSelectChars;
+
 
   for (var i = 0; i < number; i++) {
     let typeChar = i;
     let selectedChar;
     if(i%2 === 0) {
-      numberSelectChars = (Math.random() * chars.length-1).toFixed(0);
-      chars.splice(numberSelectChars, 1);
+      numberSelectChars = (Math.random() * chars.length).toFixed(0);
+      checkValue(numberSelectChars)
+      //console.log(numberSelectChars)
+      //chars.splice(numberSelectChars, 1)
     } else {
       typeChar = i - 1;
+      removeChars.push(numberSelectChars)
     }
     selectedChar = chars[numberSelectChars] 
-    console.log(selectedChar)
+
+    //console.log("selectedChar: ", selectedChar)
     positions.push({ id: i, type: typeChar, title: selectedChar});
   }
-  console.log("CreatePositions: ", positions)
+  //console.log("CreatePositions: ", positions, removeChars, chars)
   return positions;
 }
 

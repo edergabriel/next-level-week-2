@@ -8,9 +8,9 @@ let numberTouches = 0;
 
 function checkValue(number) {
   removeChars.filter(function(element, index, array) {
-    //console.log(index, removeChars[index], number)
+    console.log(index, removeChars[index], number)
     if(removeChars[index] === number) {
-      numberSelectChars = checkValue(Math.round(Math.random() * chars.length))
+      numberSelectChars = checkValue(Math.abs(Math.round(Math.random() * chars.length)))
     } 
     return numberSelectChars
   })
@@ -25,7 +25,7 @@ function createPositions(number) {
     let typeChar = i;
     let selectedChar;
     if(i%2 === 0) {
-      numberSelectChars = Math.round(Math.random() * chars.length);
+      numberSelectChars = Math.abs(Math.round(Math.random() * chars.length));
       checkValue(numberSelectChars)
       //console.log(numberSelectChars)
       //chars.splice(numberSelectChars, 1)
@@ -38,7 +38,7 @@ function createPositions(number) {
     //console.log("selectedChar: ", selectedChar)
     positions.push({ id: i, type: typeChar, title: selectedChar});
   }
-  //console.log("CreatePositions: ", positions, removeChars, chars)
+  console.log("CreatePositions: ", positions, removeChars, chars)
   return positions;
 }
 

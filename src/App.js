@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
 let removeChars = []
 let numberSelectChars;
-let numberTouches = 0;
 
 function checkValue(number) {
   removeChars.filter(function(element, index, array) {
@@ -50,6 +49,7 @@ function shuffleArray(array) {
   return array
 }
 
+
 function App() {
 
   let openCard = false;
@@ -57,11 +57,11 @@ function App() {
 
   let positions = createPositions(12);
   positions = shuffleArray(positions);
-
+  const [numberTouches, setNumberTouches] = useState(0);
   function handleClick(e) {
     e.preventDefault();
     validClick = validClick + 1;
-    numberTouches = numberTouches + 1;
+   // setNumberTouches(numberTouches + 1)
 
     if(validClick < 3) {
       e.currentTarget.classList.toggle('is-flipped');
@@ -97,7 +97,7 @@ function App() {
       <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back"><div></div></div>
     </div>
-  ))}</div>);
+  ))} <div>{numberTouches}</div> </div>);
 }
 
 export default App;

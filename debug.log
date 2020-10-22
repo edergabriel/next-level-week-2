@@ -12,3 +12,5 @@
 [1017/003612.374:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Rocketz\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\d246644d-9ed2-41a2-95f5-6306f9276357: O sistema não pode encontrar o caminho especificado. (0x3)
 [1017/003612.377:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
 [1020/000406.102:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[1020/223933.740:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[1021/233510.566:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)

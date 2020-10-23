@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
@@ -55,13 +55,13 @@ function App() {
   let openCard = false;
   let validClick = 0; 
 
-  let positions = createPositions(12);
+  let positions = createPositions(4);
   positions = shuffleArray(positions);
   const [numberTouches, setNumberTouches] = useState(0);
   function handleClick(e) {
     e.preventDefault();
     validClick = validClick + 1;
-   // setNumberTouches(numberTouches + 1)
+    setNumberTouches(numberTouches + 1)
 
     if(validClick < 3) {
       e.currentTarget.classList.toggle('is-flipped');

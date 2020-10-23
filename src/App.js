@@ -7,7 +7,7 @@ let numberSelectChars;
 
 function checkValue(number) {
   removeChars.filter(function(element, index, array) {
-    console.log(index, removeChars[index], number)
+    //console.log(index, removeChars[index], number)
     if(removeChars[index] === number) {
       numberSelectChars = checkValue(Math.abs(Math.round(Math.random() * chars.length)))
     } 

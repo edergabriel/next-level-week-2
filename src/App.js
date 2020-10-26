@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 
-let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
-let removeChars = []
-let numberSelectChars;
-
 function checkValue(number) {
   removeChars.filter(function(element, index, array) {
     //console.log(index, removeChars[index], number)
@@ -49,22 +45,30 @@ function shuffleArray(array) {
   return array
 }
 
+let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
+let removeChars = []
+let numberSelectChars;
+let openCard = false;
+let validClick = 0; 
+let positions = createPositions(16);
+positions = shuffleArray(positions);
 
 function App() {
 
-  let openCard = false;
-  let validClick = 0; 
-
-  let positions = createPositions(4);
-  positions = shuffleArray(positions);
   const [numberTouches, setNumberTouches] = useState(0);
   function handleClick(e) {
     e.preventDefault();
-    validClick = validClick + 1;
     setNumberTouches(numberTouches + 1)
 
     if(validClick < 3) {
-      e.currentTarget.classList.toggle('is-flipped');
+      validClick = validClick + 1;
+      console.log(e.currentTarget.classList);
+      //for (let i = 0; e.currentTarget.classList > 0; i++) {
+       // if(e.currentTarget.classList[i].indexOf('finded') < 0) {
+          e.currentTarget.classList.toggle('is-flipped');
+        //}
+     // }
+
       if(!openCard) {
         openCard = true;
       } else {
@@ -75,6 +79,7 @@ function App() {
             if(nodeSelected === 0) {
               nodeSelected = node
             } else {
+              console.log(node, nodeSelected)
               if(node.dataset.type !== nodeSelected.dataset.type) {
                 node.classList.remove('is-flipped')
                 nodeSelected.classList.remove('is-flipped')
@@ -97,7 +102,7 @@ function App() {
       <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back"><div></div></div>
     </div>
-  ))} <div>{numberTouches}</div> </div>);
+  ))} <div class="hud">Touches: {numberTouches}</div> </div>);
 }
 
 export default App;

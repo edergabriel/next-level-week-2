@@ -3,7 +3,7 @@ import './App.css';
 
 function checkValue(number) {
   removeChars.filter(function(element, index, array) {
-    //console.log(index, removeChars[index], number)
+    console.log(index, removeChars[index], number)
     if(removeChars[index] === number) {
       numberSelectChars = checkValue(Math.abs(Math.round(Math.random() * chars.length)))
     } 
@@ -33,7 +33,7 @@ function createPositions(number) {
     //console.log("selectedChar: ", selectedChar)
     positions.push({ id: i, type: typeChar, title: selectedChar});
   }
-  console.log("CreatePositions: ", positions, removeChars, chars)
+  //console.log("CreatePositions: ", positions, removeChars, chars)
   return positions;
 }
 
@@ -50,7 +50,7 @@ let removeChars = []
 let numberSelectChars;
 let openCard = false;
 let validClick = 0; 
-let positions = createPositions(16);
+let positions = createPositions(30);
 positions = shuffleArray(positions);
 
 function App() {
@@ -60,15 +60,11 @@ function App() {
     e.preventDefault();
     setNumberTouches(numberTouches + 1)
 
-    if(validClick < 3) {
+    if(validClick < 3 && e.currentTarget.classList.value.indexOf('finded') < 0) {
       validClick = validClick + 1;
       console.log(e.currentTarget.classList);
-      //for (let i = 0; e.currentTarget.classList > 0; i++) {
-       // if(e.currentTarget.classList[i].indexOf('finded') < 0) {
-          e.currentTarget.classList.toggle('is-flipped');
-        //}
-     // }
-
+      e.currentTarget.classList.toggle('is-flipped');
+      
       if(!openCard) {
         openCard = true;
       } else {

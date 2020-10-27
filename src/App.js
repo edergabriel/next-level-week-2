@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import './App.css';
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function checkValue(number) {
   removeChars.filter(function(element, index, array) {
-    console.log(index, removeChars[index], number)
+    console.log(index, removeChars[index], number, removeChars[index] === number)
     if(removeChars[index] === number) {
-      numberSelectChars = checkValue(Math.abs(Math.round(Math.random() * chars.length)))
+      numberSelectChars = checkValue(getRandomInt(0, chars.length -1))
     } 
     return numberSelectChars
   })
@@ -20,9 +26,9 @@ function createPositions(number) {
     let typeChar = i;
     let selectedChar;
     if(i%2 === 0) {
-      numberSelectChars = Math.abs(Math.round(Math.random() * chars.length));
+      numberSelectChars = checkValue(getRandomInt(0, chars.length -1));
       checkValue(numberSelectChars)
-      //console.log(numberSelectChars)
+      console.log(positions)
       //chars.splice(numberSelectChars, 1)
     } else {
       typeChar = i - 1;
@@ -33,7 +39,7 @@ function createPositions(number) {
     //console.log("selectedChar: ", selectedChar)
     positions.push({ id: i, type: typeChar, title: selectedChar});
   }
-  //console.log("CreatePositions: ", positions, removeChars, chars)
+  console.log("CreatePositions: ", positions, removeChars, chars)
   return positions;
 }
 
@@ -56,13 +62,13 @@ positions = shuffleArray(positions);
 function App() {
 
   const [numberTouches, setNumberTouches] = useState(0);
+
   function handleClick(e) {
     e.preventDefault();
     setNumberTouches(numberTouches + 1)
 
     if(validClick < 3 && e.currentTarget.classList.value.indexOf('finded') < 0) {
       validClick = validClick + 1;
-      console.log(e.currentTarget.classList);
       e.currentTarget.classList.toggle('is-flipped');
       
       if(!openCard) {

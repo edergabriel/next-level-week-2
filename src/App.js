@@ -8,38 +8,31 @@ function getRandomInt(min, max) {
 }
 
 function checkValue(number) {
-  removeChars.filter(function(element, index, array) {
-    console.log(index, removeChars[index], number, removeChars[index] === number)
-    if(removeChars[index] === number) {
-      numberSelectChars = checkValue(getRandomInt(0, chars.length -1))
-    } 
-    return numberSelectChars
-  })
+  for (var i = 0; i < removeChars.length; i++) {      
+    if (removeChars[i] === number) {
+        number = checkValue(getRandomInt(0, chars.length -1))
+        break;      
+    }
+  }
   return number
 }
 
 function createPositions(number) {
   let positions = []
 
-
   for (var i = 0; i < number; i++) {
     let typeChar = i;
     let selectedChar;
     if(i%2 === 0) {
       numberSelectChars = checkValue(getRandomInt(0, chars.length -1));
-      checkValue(numberSelectChars)
-      console.log(positions)
-      //chars.splice(numberSelectChars, 1)
     } else {
       typeChar = i - 1;
       removeChars.push(numberSelectChars)
     }
     selectedChar = chars[numberSelectChars] 
-
-    //console.log("selectedChar: ", selectedChar)
     positions.push({ id: i, type: typeChar, title: selectedChar});
   }
-  console.log("CreatePositions: ", positions, removeChars, chars)
+  //console.log("CreatePositions: ", positions, removeChars, chars)
   return positions;
 }
 

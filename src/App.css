@@ -11,6 +11,17 @@ body { font-family: sans-serif; background: #d0d0d0; display: flex; margin: 0;}
   float: left;
   border-radius: 10px;
   box-shadow: 2px 3px 7px -1px rgba(0, 0, 0, 0.2);
+  /*animation-name: example;*/
+  /*animation-duration: 1s;*/
+  -webkit-animation: down__cards 1.2s linear forwards;
+  -moz-animation: down__cards 1.2s linear forwards;
+  -o-animation: down__cards 1.2s linear forwards;
+  animation: down__cards 1.2s linear forwards;
+}
+
+@keyframes down__cards {
+  0%   { top:-800px;}
+  100% { top:0px;}
 }
 
 .card.is-flipped {

@@ -32,7 +32,6 @@ function createPositions(number) {
     selectedChar = chars[numberSelectChars] 
     positions.push({ id: i, type: typeChar, title: selectedChar});
   }
-  //console.log("CreatePositions: ", positions, removeChars, chars)
   return positions;
 }
 

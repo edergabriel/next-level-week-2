@@ -50,6 +50,7 @@ let openCard = false;
 let validClick = 0; 
 let positions = createPositions(30);
 positions = shuffleArray(positions);
+let finishMenu = false;
 
 function App() {
 
@@ -96,7 +97,18 @@ function App() {
       <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back"><div></div></div>
     </div>
-  ))} <div class="hud">Touches: {numberTouches}</div> </div>);
+  ))}
+  <div class="none">
+    Congratulations!
+    Your Record: {numberTouches} touches
+    <button>New Game</button>
+  </div>
+    <div class="hud">
+      <div>
+        <span>{numberTouches}</span> Touches
+      </div>
+    </div> 
+  </div>);
 }
 
 export default App;

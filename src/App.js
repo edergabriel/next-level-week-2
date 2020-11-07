@@ -3,6 +3,13 @@ import './App.css';
 
 import RestartGame from './components/restartGame';
 
+let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
+let removeChars = []
+let numberSelectChars = 0;
+let openCard = false;
+let validClick = 0; 
+let positions;
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -45,13 +52,16 @@ function shuffleArray(array) {
   return array
 }
 
-let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
-let removeChars = []
-let numberSelectChars;
-let openCard = false;
-let validClick = 0; 
-let positions = createPositions(30);
-positions = shuffleArray(positions);
+function newGame() {
+  removeChars = []
+  numberSelectChars = 0;
+  openCard = false;
+  validClick = 0; 
+  positions = createPositions(4);
+  positions = shuffleArray(positions);
+}
+
+newGame();
 
 function App() {
 
@@ -61,7 +71,6 @@ function App() {
   function handleClick(e) {
     e.preventDefault();
     setNumberTouches(numberTouches + 1)
-    //setFinishGame(true)
 
     if(validClick < 3 && e.currentTarget.classList.value.indexOf('finded') < 0) {
       validClick = validClick + 1;
@@ -77,13 +86,16 @@ function App() {
             if(nodeSelected === 0) {
               nodeSelected = node
             } else {
-              console.log(node, nodeSelected)
+              //console.log(node, nodeSelected)
               if(node.dataset.type !== nodeSelected.dataset.type) {
                 node.classList.remove('is-flipped')
                 nodeSelected.classList.remove('is-flipped')
               } else {
                 node.classList.add('finded')
                 nodeSelected.classList.add('finded')
+                if(document.querySelectorAll('.card.finded').length >= document.querySelectorAll('.card').length) {
+                  setFinishGame(true)
+                }
               }
               nodeSelected = 0
             }
@@ -95,13 +107,27 @@ function App() {
     }
   }
 
-  return (<div>{positions.map(position => (
+  function onNewGame() {
+    document.querySelector('.cards').classList.add('none')
+    for(var i = 0; i < document.querySelectorAll('.card').length; i++ ) {
+      document.querySelectorAll('.card')[i].classList.remove('finded')
+      document.querySelectorAll('.card')[i].classList.remove('is-flipped')
+    }
+    newGame();
+    setFinishGame(false);
+    setNumberTouches(0);
+    setTimeout(function() {
+      document.querySelector('.cards').classList.remove('none')
+    }, 1000)
+  }
+
+  return (<div class="cards">{positions.map(position => (
     <div className="card" onClick={handleClick} data-type={position.type} key={position.id}>
       <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back"><div></div></div>
     </div>
   ))}
-    {finishGame ? <RestartGame touches={numberTouches} /> : null }
+    {finishGame ? <RestartGame  onNewGame={() => onNewGame() } touches={numberTouches} /> : null }
     <div class="hud">
       <div>
         <span>{numberTouches}</span> Touches

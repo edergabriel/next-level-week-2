@@ -78,6 +78,7 @@ body { font-family: sans-serif; background: #d0d0d0; display: flex; margin: 0;}
   box-sizing: border-box;
   text-transform: uppercase;
   color: #fff;
+  z-index: 2;
 }
 
 .hud div {

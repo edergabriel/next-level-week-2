@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 
+import RestartGame from './components/restartGame';
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -50,15 +52,16 @@ let openCard = false;
 let validClick = 0; 
 let positions = createPositions(30);
 positions = shuffleArray(positions);
-let finishMenu = false;
 
 function App() {
 
   const [numberTouches, setNumberTouches] = useState(0);
+  const [finishGame, setFinishGame] = useState(false);
 
   function handleClick(e) {
     e.preventDefault();
     setNumberTouches(numberTouches + 1)
+    //setFinishGame(true)
 
     if(validClick < 3 && e.currentTarget.classList.value.indexOf('finded') < 0) {
       validClick = validClick + 1;
@@ -98,11 +101,7 @@ function App() {
       <div className="card__face card__face--back"><div></div></div>
     </div>
   ))}
-  <div class="none">
-    Congratulations!
-    Your Record: {numberTouches} touches
-    <button>New Game</button>
-  </div>
+    {finishGame ? <RestartGame touches={numberTouches} /> : null }
     <div class="hud">
       <div>
         <span>{numberTouches}</span> Touches

@@ -3,7 +3,7 @@ import './App.css';
 
 import RestartGame from './components/restartGame';
 
-let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '1', '2', '@', '#', '&', '?', '!', '%', 'W'];
+let chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', '1', '2', '3', '#', '&', '?', '!', '%', 'W'];
 let removeChars = []
 let numberSelectChars = 0;
 let openCard = false;
@@ -70,9 +70,9 @@ function App() {
 
   function handleClick(e) {
     e.preventDefault();
-    setNumberTouches(numberTouches + 1)
 
-    if(validClick < 3 && e.currentTarget.classList.value.indexOf('finded') < 0) {
+    if(validClick < 2 && e.currentTarget.classList.value.indexOf('finded') < 0) {
+      setNumberTouches(numberTouches + 1);
       validClick = validClick + 1;
       e.currentTarget.classList.toggle('is-flipped');
       
@@ -130,7 +130,7 @@ function App() {
     {finishGame ? <RestartGame  onNewGame={() => onNewGame() } touches={numberTouches} /> : null }
     <div class="hud">
       <div>
-        <span>{numberTouches}</span> Touches
+        <span>{numberTouches}</span> {numberTouches >= 2 ? "touches" : "touch" }
       </div>
     </div> 
   </div>);

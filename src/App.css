@@ -79,12 +79,14 @@ body { font-family: sans-serif; background: #d0d0d0; display: flex; margin: 0;}
   text-transform: uppercase;
   color: #fff;
   z-index: 2;
+  display: flex;
 }
 
 .hud div {
   background: #525252;
   width: max-content;
   padding: 0 10px;
+  margin: 0 10px;
 }
 
 .hud span {

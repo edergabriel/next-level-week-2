@@ -57,7 +57,7 @@ function newGame() {
   numberSelectChars = 0;
   openCard = false;
   validClick = 0; 
-  positions = createPositions(30);
+  positions = createPositions(6);
   positions = shuffleArray(positions);
 }
 
@@ -66,7 +66,9 @@ newGame();
 function App() {
 
   const [numberTouches, setNumberTouches] = useState(0);
+  const [record, setRecord] = useState(9999);
   const [finishGame, setFinishGame] = useState(false);
+  const [flgRecord, setFlgRecord] = useState(false);
 
   function handleClick(e) {
     e.preventDefault();
@@ -95,6 +97,11 @@ function App() {
                 nodeSelected.classList.add('finded')
                 if(document.querySelectorAll('.card.finded').length >= document.querySelectorAll('.card').length) {
                   setFinishGame(true)
+                  setFlgRecord(true)
+                  console.log(numberTouches, record);
+                  if(numberTouches < record) {
+                    setRecord(numberTouches + 1);
+                  }
                 }
               }
               nodeSelected = 0
@@ -121,17 +128,18 @@ function App() {
     }, 1000)
   }
 
-  return (<div class="cards">{positions.map(position => (
+  return (<div className="cards">{positions.map(position => (
     <div className="card" onClick={handleClick} data-type={position.type} key={position.id}>
       <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back"><div></div></div>
     </div>
   ))}
     {finishGame ? <RestartGame  onNewGame={() => onNewGame() } touches={numberTouches} /> : null }
-    <div class="hud">
+    <div className="hud">
       <div>
         <span>{numberTouches}</span> {numberTouches >= 2 ? "touches" : "touch" }
       </div>
+      { flgRecord ? <div><span>{ record }</span> your record</div> : null }
     </div> 
   </div>);
 }

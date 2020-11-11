@@ -57,7 +57,7 @@ function newGame() {
   numberSelectChars = 0;
   openCard = false;
   validClick = 0; 
-  positions = createPositions(6);
+  positions = createPositions(30);
   positions = shuffleArray(positions);
 }
 

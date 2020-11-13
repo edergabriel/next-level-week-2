@@ -129,10 +129,10 @@ function App() {
   }
 
   return (<div className="cards">{positions.map(position => (
-    <div className="card" onClick={handleClick} data-type={position.type} key={position.id}>
+    <button className="card" href="#" onClick={handleClick} data-type={position.type} key={position.id}>
       <div className="card__face card__face--front">{position.title}</div>
       <div className="card__face card__face--back"><div></div></div>
-    </div>
+    </button>
   ))}
     {finishGame ? <RestartGame  onNewGame={() => onNewGame() } touches={numberTouches} /> : null }
     <div className="hud">
